@@ -1,0 +1,188 @@
+This project is a RESTful API developed using Spring Boot that calculates reward points for customers based on their purchase transactions over a three-month period.
+
+The application processes customer transactions and generates:
+
+- Monthly reward points
+- Total reward points
+- Customer-wise reward summaries
+
+The solution follows clean architecture principles and includes:
+
+- REST APIs
+- Layered architecture
+- Exception handling
+- Unit testing
+- Integration testing
+- Docker support
+- MySQL database integration
+
+---
+
+# Reward Logic Explanation
+
+Customers earn reward points based on transaction amount.
+
+## Reward Rules
+
+- No points for amount up to $50
+- 1 point for every dollar spent between $50 and $100
+- 2 points for every dollar spent above $100
+
+## Example Calculation
+
+Transaction Amount = $120
+
+Reward Calculation:
+
+- $50 to $100 → 50 points
+- Above $100 → 20 × 2 = 40 points
+
+Total Reward Points = 90
+
+---
+
+# Tech Stack
+
+| Technology | Version |
+|------------|----------|
+| Java | 1.8 |
+| Spring Boot | 2.3.4.RELEASE |
+| Spring Data JPA | 2.x |
+| MySQL | 8.x |
+| Maven | 3.x |
+| JUnit | 5 |
+| Mockito | Latest Compatible |
+| Docker | Latest |
+
+---
+
+# Project Structure
+
+controller
+service
+repository
+beans
+constants
+RewardServiceApplication.java
+
+
+---
+
+# Architecture Explanation
+
+The application follows layered architecture.
+
+## Controller Layer
+
+Handles incoming REST API requests.
+
+## Service Layer
+
+Contains business logic for reward calculation.
+
+## Repository Layer
+
+Handles database operations using Spring Data JPA.
+
+## DTO Layer
+
+Transfers response data between layers.
+
+
+---
+
+# API Endpoint Details
+
+## Get Customer Rewards
+
+### Endpoint
+
+GET /api/rewards
+
+
+### Sample Response
+
+json
+[
+  {
+    "customerId": 1,
+    "customerName": "John",
+    "monthlyRewards": {
+      "JANUARY": 115,
+      "FEBRUARY": 250
+    },
+    "totalRewards": 365
+  },
+  {
+    "customerId": 2,
+    "customerName": "Alice",
+    "monthlyRewards": {
+      "MARCH": 120
+    },
+    "totalRewards": 120
+  }
+]
+```
+
+---
+
+# Database Configuration
+
+## Create Database
+
+sql
+CREATE DATABASE rewards;
+
+
+## application.properties
+
+serverport=8080
+
+spring.datasource.url=jdbc:mysql://localhost:3306/rewards?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=ItsRoot@123
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties
+---
+
+
+Covers:
+
+- Reward calculation logic
+- Multiple customer transactions
+- Monthly reward aggregation
+- Edge cases
+- Invalid scenarios
+
+---
+
+# Features
+
+- Reward calculation based on dynamic months
+- Multiple customer transaction support
+- Clean layered architecture
+- RESTful API design
+- Docker support
+- MySQL integration
+- Unit and integration testing
+- JavaDocs documentation
+- Exception handling
+- Maven-based build
+
+---
+
+# Coding Standards Followed
+
+- Proper package naming conventions
+- Constructor injection
+- Layered architecture
+- Java coding standards
+- Clean code formatting
+- Meaningful variable and method names
+- JavaDocs at class and method levels
+
+---
